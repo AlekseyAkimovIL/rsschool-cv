@@ -53,4 +53,58 @@ Basic commands for using Git and GitHub to manage code and collaborate with othe
 
 Using tools in browsers (like Chrome DevTools) for debugging and testing code.
 Frameworks and Libraries (optional)
-g
+
+---
+
+### Code example:
+
+```javascript
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minsEl = document.getElementById("mins");
+const secondsEl = document.getElementById("seconds");
+
+const newYears = "1 Jan 2024";
+
+function countDown() {
+  const newYearsDate = new Date(newYears);
+  const currentDate = new Date();
+
+  const totalSeconds = (newYearsDate - currentDate) / 1000;
+
+  const days = Math.floor(totalSeconds / 3600 / 24);
+  const hours = Math.floor(totalSeconds / 3600) % 24;
+  const minutes = Math.floor(totalSeconds / 60) % 60;
+  const seconds = Math.floor(totalSeconds % 60);
+
+  daysEl.innerHTML = formatTime(days);
+  hoursEl.innerHTML = formatTime(hours);
+  minsEl.innerHTML = formatTime(minutes);
+  secondsEl.innerHTML = formatTime(seconds);
+}
+
+countDown();
+
+setInterval(countDown, 1000);
+
+function formatTime(time) {
+  return time < 10 ? `0${time}` : time;
+}
+```
+
+---
+
+### Courses and education:
+
+- Specialist Degree St. Petersburg State University of Economics [UNECON](https://en.unecon.ru/)
+- WAYUP school [link](https://wayup.in/ru/)
+- RS School [link](https://rs.school/)
+
+---
+
+### Languages:
+
+- English(b2)
+- Russian(native)
+- Ukranian(a2)
+- Hebrew(b1)
