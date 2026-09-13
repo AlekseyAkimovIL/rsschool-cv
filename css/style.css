@@ -1,0 +1,517 @@
+/* ---------- Tokens ---------- */
+:root {
+  --bg: #eef0ec;
+  --panel: #ffffff;
+  --ink: #1b2430;
+  --ink-soft: #4a5260;
+  --sidebar-bg: #1b2430;
+  --sidebar-text: #e7eae6;
+  --sidebar-muted: #9aa4ac;
+  --accent: #3e8e82;
+  --accent-dark: #2c655c;
+  --border: #dfe3dc;
+  --radius: 4px;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "IBM Plex Sans", -apple-system, Segoe UI, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* ---------- Reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--accent-dark);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+
+.layout {
+  max-width: 1040px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-areas:
+    "sidebar content"
+    "footer  footer";
+  background-color: var(--panel);
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+}
+
+
+.sidebar__top {
+  display: block;
+}
+
+.sidebar__profile {
+  display: block;
+  min-width: 0;
+}
+
+.sidebar__avatar {
+  border-radius: 50%;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 20px;
+}
+
+.sidebar__info {
+  min-width: 0;
+}
+
+.sidebar__name {
+  font-size: 1.7rem;
+  color: #ffffff;
+  margin-bottom: 0.2em;
+  overflow-wrap: break-word;
+}
+
+.sidebar__role {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin: 0;
+}
+
+
+.sidebar__toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid rgba(231, 234, 230, 0.3);
+  border-radius: var(--radius);
+  background-color: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar__toggle-icon,
+.sidebar__toggle-icon::before,
+.sidebar__toggle-icon::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--sidebar-text);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.sidebar__toggle-icon {
+  position: relative;
+}
+
+.sidebar__toggle-icon::before,
+.sidebar__toggle-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.sidebar__toggle-icon::before {
+  top: -6px;
+}
+
+.sidebar__toggle-icon::after {
+  top: 6px;
+}
+
+.sidebar__toggle[aria-expanded="true"] .sidebar__toggle-icon {
+  background-color: transparent;
+}
+
+.sidebar__toggle[aria-expanded="true"] .sidebar__toggle-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.sidebar__toggle[aria-expanded="true"] .sidebar__toggle-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.sidebar__nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid rgba(231, 234, 230, 0.15);
+  padding-top: 24px;
+}
+
+.sidebar__nav-link {
+  color: var(--sidebar-muted);
+  font-size: 0.95rem;
+}
+
+.sidebar__nav-link:hover,
+.sidebar__nav-link:focus-visible {
+  color: var(--sidebar-text);
+}
+
+.sidebar__contact {
+  border-top: 1px solid rgba(231, 234, 230, 0.15);
+  padding-top: 24px;
+}
+
+.sidebar__contact-title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--sidebar-muted);
+  margin-bottom: 14px;
+}
+
+.sidebar__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar__contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar__contact-label {
+  font-size: 0.75rem;
+  color: var(--sidebar-muted);
+}
+
+.sidebar__contact-link {
+  color: var(--sidebar-text);
+  font-size: 0.92rem;
+  word-break: break-word;
+}
+
+.sidebar__contact-link:hover,
+.sidebar__contact-link:focus-visible {
+  color: var(--accent);
+}
+
+
+.content {
+  grid-area: content;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+
+.about__title,
+.skills__title,
+.code__title,
+.experience__title,
+.education__title,
+.languages__title {
+  font-size: 1.35rem;
+  color: var(--ink);
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+.about__text,
+.code__text,
+.experience__text {
+  max-width: 68ch;
+  color: var(--ink-soft);
+}
+
+
+.skills__item,
+.experience__item,
+.languages__item {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+
+.skills__item:first-child,
+.experience__item:first-child,
+.languages__item:first-child {
+  border-top: none;
+}
+
+.skills__item-name,
+.experience__item-name,
+.languages__item-name {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.skills__item-detail,
+.experience__item-detail,
+.languages__item-detail {
+  color: var(--ink-soft);
+}
+
+
+.education__item {
+  padding: 8px 0;
+  color: var(--ink-soft);
+}
+
+.education__item a {
+  color: var(--accent-dark);
+}
+
+.code__snippet {
+  background-color: var(--sidebar-bg);
+  color: #d8dee5;
+  padding: 20px;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.code__snippet code {
+  font-family: var(--font-mono);
+}
+
+
+.footer {
+  grid-area: footer;
+  border-top: 1px solid var(--border);
+  padding: 24px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.footer__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.footer__dot {
+  color: var(--border);
+}
+
+.footer__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.footer__badge-icon {
+  color: var(--accent-dark);
+}
+
+.footer__badge:hover,
+.footer__badge:focus-visible {
+  color: var(--accent-dark);
+}
+
+
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 240px 1fr;
+  }
+
+  .sidebar {
+    padding: 40px 24px;
+  }
+
+  .content {
+    padding: 40px 28px;
+  }
+
+  .skills__item,
+  .experience__item,
+  .languages__item {
+    grid-template-columns: 130px 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "sidebar"
+      "content"
+      "footer";
+  }
+
+  .sidebar {
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .sidebar__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .sidebar__profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .sidebar__avatar {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .sidebar__name {
+    font-size: 1.2rem;
+  }
+
+  .sidebar__toggle {
+    display: inline-flex;
+  }
+
+  .sidebar__nav {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.25s ease;
+  }
+
+  .sidebar__nav--open {
+    max-height: 320px;
+  }
+
+  .sidebar__nav-list {
+    padding-top: 16px;
+  }
+
+  .content {
+    padding: 32px 24px;
+    gap: 32px;
+  }
+
+  .skills__item,
+  .experience__item,
+  .languages__item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .footer {
+    padding: 20px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Small mobile: extra-narrow phones */
+@media (max-width: 380px) {
+  .sidebar__name {
+    font-size: 1.05rem;
+  }
+
+  .sidebar__role {
+    font-size: 0.78rem;
+  }
+
+  .content {
+    padding: 24px 16px;
+  }
+
+  .about__title,
+  .skills__title,
+  .code__title,
+  .experience__title,
+  .education__title,
+  .languages__title {
+    font-size: 1.15rem;
+  }
+}
