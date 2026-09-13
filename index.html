@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aleksey Akimov — Frontend Developer CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&amp;family=IBM+Plex+Mono:wght@500;600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="layout">
+
+    <header class="sidebar">
+      <div class="sidebar__top">
+        <div class="sidebar__profile">
+          <img class="sidebar__avatar" src="img/avatar.svg" alt="Avatar: initials of Aleksey Akimov on a dark background" width="120" height="120">
+          <div class="sidebar__info">
+            <h1 class="sidebar__name">Aleksey Akimov</h1>
+            <p class="sidebar__role">Frontend&nbsp;Developer</p>
+          </div>
+        </div>
+
+        <button type="button" class="sidebar__toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+          <span class="sidebar__toggle-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <nav class="sidebar__nav" id="siteNav" aria-label="Resume sections">
+        <ul class="sidebar__nav-list">
+          <li class="sidebar__nav-item"><a class="sidebar__nav-link" href="#about">About</a></li>
+          <li class="sidebar__nav-item"><a class="sidebar__nav-link" href="#skills">Skills</a></li>
+          <li class="sidebar__nav-item"><a class="sidebar__nav-link" href="#code">Code</a></li>
+          <li class="sidebar__nav-item"><a class="sidebar__nav-link" href="#experience">Experience</a></li>
+          <li class="sidebar__nav-item"><a class="sidebar__nav-link" href="#education">Education</a></li>
+          <li class="sidebar__nav-item"><a class="sidebar__nav-link" href="#languages">Languages</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__contact">
+        <h2 class="sidebar__contact-title">Contact</h2>
+        <ul class="sidebar__contact-list">
+          <li class="sidebar__contact-item">
+            <span class="sidebar__contact-label">Phone</span>
+            <a class="sidebar__contact-link" href="tel:+88005553535">+8-800-555-35-35</a>
+          </li>
+          <li class="sidebar__contact-item">
+            <span class="sidebar__contact-label">Email</span>
+            <a class="sidebar__contact-link" href="mailto:akimov.frontend@gmail.com">akimov.frontend@gmail.com</a>
+          </li>
+          <li class="sidebar__contact-item">
+            <span class="sidebar__contact-label">GitHub</span>
+            <a class="sidebar__contact-link" href="https://github.com/alekseyakimovil">alekseyakimovil</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main class="content">
+      <section id="about" class="about">
+        <h2 class="about__title">About</h2>
+        <p class="about__text">Hi! My name is Aleksey, and I'm taking my first steps in frontend development. I don't have a formal background in IT, but I've always been fascinated by technology and how it changes everyday life — that curiosity led me to teaching myself how to code.</p>
+        <p class="about__text">Right now I'm focused on HTML, CSS, and JavaScript, and I've already completed several online courses that gave me a solid foundation. I enjoy solving problems and designing interfaces that are genuinely easy to use.</p>
+        <p class="about__text">One of my strengths is creativity: it helps me build visually pleasant solutions that are still functional. I learn fast and work well in a team, so I'm looking for a chance to learn from more experienced developers and contribute to real projects.</p>
+      </section>
+
+      <section id="skills" class="skills">
+        <h2 class="skills__title">Skills</h2>
+        <ul class="skills__list">
+          <li class="skills__item">
+            <span class="skills__item-name">HTML</span>
+            <span class="skills__item-detail">page structure, semantic markup for accessibility and SEO.</span>
+          </li>
+          <li class="skills__item">
+            <span class="skills__item-name">CSS</span>
+            <span class="skills__item-detail">styling and layout, Flexbox and Grid, familiar with SASS/LESS preprocessors.</span>
+          </li>
+          <li class="skills__item">
+            <span class="skills__item-name">JavaScript</span>
+            <span class="skills__item-detail">core syntax, DOM manipulation, event handling.</span>
+          </li>
+          <li class="skills__item">
+            <span class="skills__item-name">Responsive design</span>
+            <span class="skills__item-detail">media queries, mobile-first approach, layouts for different devices.</span>
+          </li>
+          <li class="skills__item">
+            <span class="skills__item-name">Git & GitHub</span>
+            <span class="skills__item-detail">basic commands, branching, collaborative workflows.</span>
+          </li>
+          <li class="skills__item">
+            <span class="skills__item-name">DevTools</span>
+            <span class="skills__item-detail">debugging and testing code in browser developer tools.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="code" class="code">
+        <h2 class="code__title">Code sample</h2>
+        <p class="code__text">A Codewars solution — a countdown timer to New Year's.</p>
+        <pre class="code__snippet"><code>const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minsEl = document.getElementById("mins");
+const secondsEl = document.getElementById("seconds");
+
+const newYears = "1 Jan 2024";
+
+function countDown() {
+  const newYearsDate = new Date(newYears);
+  const currentDate = new Date();
+
+  const totalSeconds = (newYearsDate - currentDate) / 1000;
+
+  const days = Math.floor(totalSeconds / 3600 / 24);
+  const hours = Math.floor(totalSeconds / 3600) % 24;
+  const minutes = Math.floor(totalSeconds / 60) % 60;
+  const seconds = Math.floor(totalSeconds % 60);
+
+  daysEl.innerHTML = formatTime(days);
+  hoursEl.innerHTML = formatTime(hours);
+  minsEl.innerHTML = formatTime(minutes);
+  secondsEl.innerHTML = formatTime(seconds);
+}
+
+countDown();
+
+setInterval(countDown, 1000);
+
+function formatTime(time) {
+  return time &lt; 10 ? `0${time}` : time;
+}</code></pre>
+      </section>
+
+      <section id="experience" class="experience">
+        <h2 class="experience__title">Experience</h2>
+        <p class="experience__text">I don't have formal work experience in IT yet, but I do have learning projects. This CV is the first one: the markup, structure, and styling were built entirely by hand.</p>
+        <ul class="experience__list">
+          <li class="experience__item">
+            <span class="experience__item-name">rsschool-cv</span>
+            <span class="experience__item-detail">A CV built with HTML and CSS as part of the RS School course — <a href="https://github.com/alekseyakimovil/rsschool-cv">source code on GitHub</a>.</span>
+          </li>
+        </ul>
+      </section>
+
+      <section id="education" class="education">
+        <h2 class="education__title">Education</h2>
+        <ul class="education__list">
+          <li class="education__item">Specialist degree — Saint Petersburg State University of Economics, <a href="https://en.unecon.ru/">UNECON</a></li>
+          <li class="education__item"><a href="https://wayup.in/ru/">WAYUP</a> school</li>
+          <li class="education__item"><a href="https://rs.school/">RS School</a></li>
+        </ul>
+      </section>
+
+      <section id="languages" class="languages">
+        <h2 class="languages__title">Languages</h2>
+        <ul class="languages__list">
+          <li class="languages__item">
+            <span class="languages__item-name">English</span>
+            <span class="languages__item-detail">B2</span>
+          </li>
+          <li class="languages__item">
+            <span class="languages__item-name">Russian</span>
+            <span class="languages__item-detail">Native</span>
+          </li>
+          <li class="languages__item">
+            <span class="languages__item-name">Ukrainian</span>
+            <span class="languages__item-detail">A2</span>
+          </li>
+          <li class="languages__item">
+            <span class="languages__item-name">Hebrew</span>
+            <span class="languages__item-detail">B1</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__meta">
+        <a class="footer__link" href="https://github.com/alekseyakimovil">Author's GitHub</a>
+        <span class="footer__dot">&bull;</span>
+        <span class="footer__year">2026</span>
+      </p>
+       <a class="footer__badge" href="https://rs.school/" aria-label="Rolling Scopes School">
+        <img class="footer__badge-icon" src="img/rs-school-logo.svg" alt="" width="100" height="100">
+        <span class="footer__badge-label">Rolling Scopes School</span>
+      </a>
+    </footer>
+
+  </div>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>
